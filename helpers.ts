@@ -395,7 +395,7 @@ export function parseTime(time: string, date?: string): Date {
  * Parses a date in the format "yyMMdd" along with a time in the format
  * "hhmmss" or "hhmmss.ss" and returns a Date object.
  */
-export function parseDatetime(date: string, time: string): Date {
+export function parseDatetime(date: string, time: string): number {
     const day = parseInt(date.slice(0, 2), 10);
     const month = parseInt(date.slice(2, 4), 10);
     let year = parseInt(date.slice(4, 6), 10);
@@ -416,5 +416,5 @@ export function parseDatetime(date: string, time: string): Date {
         milliseconds = parseInt(time.slice(7, 9), 10) * 10;
     }
 
-    return new Date(Date.UTC(year, month - 1, day, hours, minutes, seconds, milliseconds));
+    return new Date(Date.UTC(year, month - 1, day, hours, minutes, seconds, milliseconds)).getTime();
 }

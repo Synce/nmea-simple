@@ -37,7 +37,7 @@ export interface RMCPacket {
     sentenceId: "RMC";
     sentenceName?: string;
     talkerId?: string;
-    datetime: Date;
+    datetime: number;
     status: "valid" | "warning";
     latitude: number;
     longitude: number;

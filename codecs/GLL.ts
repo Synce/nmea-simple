@@ -34,7 +34,7 @@ export interface GLLPacket {
     talkerId?: string;
     latitude: number;
     longitude: number;
-    time: Date;
+    time: number;
     status: "valid" | "invalid";
     faaMode?: string;
 }

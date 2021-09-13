@@ -215,10 +215,12 @@ export function encodeDate(date?: Date): string {
 }
 
 
-export function encodeTime(date?: Date): string {
-    if (date === undefined) {
+export function encodeTime(dateNum?: number): string {
+  
+    if (dateNum === undefined) {
         return "";
     }
+    const date= new Date(dateNum);
 
     const hours = date.getUTCHours();
     const minutes = date.getUTCMinutes();
@@ -350,10 +352,10 @@ export function parseLongitude(lon: string, hemi: string): number {
  * @param {String=} date Optional date in format the ddmmyyyy or ddmmyy
  * @returns {Date}
  */
-export function parseTime(time: string, date?: string): Date {
+export function parseTime(time: string, date?: string): number {
 
     if (time === "") {
-        return new Date(0);
+        return new Date(0).getTime();
     }
 
     const ret = new Date();
@@ -387,7 +389,7 @@ export function parseTime(time: string, date?: string): Date {
     }
     ret.setUTCMilliseconds(Number(ms));
 
-    return ret;
+    return ret.getTime();
 }
 
 

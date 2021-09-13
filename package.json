@@ -1,12 +1,6 @@
 {
   "name": "nmea-simple",
   "version": "3.2.0",
-  "homepage": "https://github.com/101100/nmea-simple",
-  "description": "NMEA 0183 sentence parser and encoder",
-  "author": {
-    "name": "Jason Heard",
-    "email": "jasonpheard@gmail.com"
-  },
   "license": "MIT",
   "main": "index.ts",
   "keywords": [
@@ -17,19 +11,6 @@
     "parser",
     "typescript"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/101100/nmea-simple"
-  },
-  "bugs": {
-    "url": "https://github.com/101100/nmea-simple/issues"
-  },
-  "scripts": {
-    "build": "npm run lint && tsc",
-    "lint": "tslint *.ts codecs/*.ts examples/*.ts tests/*.ts",
-    "prepublish": "npm run test",
-    "test": "npm run build && mocha -R tap dist/tests"
-  },
   "engines": {
     "node": ">= 8.0.0"
   },

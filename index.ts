@@ -100,6 +100,25 @@ export function parseNmeaSentence(sentence: string): Packet {
     packet.talkerId = talkerId;
     return packet;
 }
+export function parseNmeaCode(sentence: string): {sentenceId:string; talkerId:string; sentence:string} {
+    if (!validNmeaChecksum(sentence)) {
+        throw Error(`Invalid sentence: "${sentence}".`);
+    }
+
+    const fields = sentence.split("*")[0].split(",");
+
+    let talkerId: string;
+    let sentenceId: string;
+    if (fields[0].charAt(1) === "P") {
+        talkerId = "P"; // Proprietary
+        sentenceId = fields[0].substr(2);
+    } else {
+        talkerId = fields[0].substr(1, 2);
+        sentenceId = fields[0].substr(3);
+    }
+    fields[0] = sentenceId;    
+    return {sentenceId,talkerId, sentence};
+}
 
 
 export function encodeNmeaPacket(packet: Packet, talker: string = "P"): string {

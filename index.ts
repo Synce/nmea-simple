@@ -28,6 +28,21 @@ export { APBPacket, BWCPacket, DBTPacket, DTMPacket, GGAPacket, GLLPacket, GNSPa
 
 type Decoder = (parts: string[]) => Packet;
 
+export class ParserError extends Error {
+    sentenceId: string;
+    constructor(sentenceId: string, ...params: any) {
+     super(...params);
+  
+     
+      this.sentenceId = sentenceId;    
+    }
+  }
+  
+
+
+
+
+
 
 const decoders: { [sentenceId: string]: Decoder } = {
     APB: decodeAPB,
@@ -93,7 +108,7 @@ export function parseNmeaSentence(sentence: string): Packet {
     }
 
     if (!parser) {
-        throw Error(`No known parser for sentence ID "${sentenceId}".`);
+        throw new ParserError(sentenceId, `No known parser for sentence ID "${sentenceId}".`);
     }
 
     const packet = parser(fields);

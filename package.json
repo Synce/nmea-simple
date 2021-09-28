@@ -25,6 +25,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@canboat/canboatjs": "^1.21.1"
+    "@canboat/canboatjs": "^1.21.1",
+    "events": "^3.3.0"
   }
 }

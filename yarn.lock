@@ -18,10 +18,9 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@canboat/canboatjs@^1.21.1":
-  version "1.21.1"
-  resolved "https://registry.yarnpkg.com/@canboat/canboatjs/-/canboatjs-1.21.1.tgz#82ff6be7d06a07e8c7b1e6b0b0164486e16d1493"
-  integrity sha512-l1bkXI5W86QCu+i/ujWrQ0zvd10deZ20FDmm8op6sqY427QivI7QqqciZ4dEfNEl/BST2NawDdoBbBjryrNC/Q==
+"@canboat/canboatjs@Synce/canboatjs":
+  version "1.21.2"
+  resolved "https://codeload.github.com/Synce/canboatjs/tar.gz/283e63078fb5b7e3febffced2417f2bcc2b4f38c"
   dependencies:
     "@canboat/pgns" "^1.4.0"
     bit-buffer "0.2.3"
@@ -537,11 +536,6 @@ duplexify@^3.6.0, duplexify@^3.6.1:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-emitter-component@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/emitter-component/-/emitter-component-1.1.1.tgz#065e2dbed6959bf470679edabeaf7981d1003ab6"
-  integrity sha1-Bl4tvtaVm/RwZ57avq95gdEAOrY=
-
 emoji-regex@^7.0.1:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-7.0.3.tgz#933a04052860c85e83c122479c4748a8e4c72156"
@@ -659,11 +653,6 @@ event-emitter@~0.3.5:
   dependencies:
     d "1"
     es5-ext "~0.10.14"
-
-events@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
-  integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
 expand-template@^2.0.3:
   version "2.0.3"
@@ -1601,13 +1590,6 @@ stream-shift@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.1.tgz#d7088281559ab2778424279b0877da3c392d5a3d"
   integrity sha512-AiisoFqQ0vbGcZgQPY1cdP2I76glaVA/RauYR4G4thNFgkTqr90yXTo4LYX60Jl+sIlPNHHdGSwo01AvbKUSVQ==
-
-stream@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/stream/-/stream-0.0.2.tgz#7f5363f057f6592c5595f00bc80a27f5cec1f0ef"
-  integrity sha1-f1Nj8Ff2WSxVlfALyAon9c7B8O8=
-  dependencies:
-    emitter-component "^1.1.1"
 
 string-width@^1.0.1:
   version "1.0.2"

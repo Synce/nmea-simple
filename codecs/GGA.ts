@@ -52,7 +52,7 @@ export interface GGAPacket {
     sentenceId: "GGA";
     sentenceName?: string;
     talkerId?: string;
-    time: Date;
+    time: number;
     latitude: number;
     longitude: number;
     fixType: FixType;

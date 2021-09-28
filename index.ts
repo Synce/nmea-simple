@@ -1,48 +1,127 @@
 import { decodeSentence as decodeAPB, APBPacket } from "./codecs/APB";
 import { decodeSentence as decodeBWC, BWCPacket } from "./codecs/BWC";
-import { decodeSentence as decodeDBT, encodePacket as encodeDBT, DBTPacket } from "./codecs/DBT";
+import {
+    decodeSentence as decodeDBT,
+    encodePacket as encodeDBT,
+    DBTPacket,
+} from "./codecs/DBT";
 import { decodeSentence as decodeDTM, DTMPacket } from "./codecs/DTM";
-import { decodeSentence as decodeGGA, encodePacket as encodeGGA, GGAPacket } from "./codecs/GGA";
-import { decodeSentence as decodeGLL, encodePacket as encodeGLL, GLLPacket } from "./codecs/GLL";
-import { decodeSentence as decodeGNS, encodePacket as encodeGNS, GNSPacket } from "./codecs/GNS";
+import {
+    decodeSentence as decodeGGA,
+    encodePacket as encodeGGA,
+    GGAPacket,
+} from "./codecs/GGA";
+import {
+    decodeSentence as decodeGLL,
+    encodePacket as encodeGLL,
+    GLLPacket,
+} from "./codecs/GLL";
+import {
+    decodeSentence as decodeGNS,
+    encodePacket as encodeGNS,
+    GNSPacket,
+} from "./codecs/GNS";
 import { decodeSentence as decodeGSA, GSAPacket } from "./codecs/GSA";
 import { decodeSentence as decodeGST, GSTPacket } from "./codecs/GST";
 import { decodeSentence as decodeGSV, GSVPacket } from "./codecs/GSV";
 import { decodeSentence as decodeHDG, HDGPacket } from "./codecs/HDG";
-import { decodeSentence as decodeHDM, encodePacket as encodeHDM, HDMPacket } from "./codecs/HDM";
-import { decodeSentence as decodeHDT, encodePacket as encodeHDT, HDTPacket } from "./codecs/HDT";
-import { decodeSentence as decodeMTK, encodePacket as encodeMTK, MTKPacket } from "./codecs/MTK";
-import { decodeSentence as decodeMWV, encodePacket as encodeMWV, MWVPacket } from "./codecs/MWV";
+import {
+    decodeSentence as decodeHDM,
+    encodePacket as encodeHDM,
+    HDMPacket,
+} from "./codecs/HDM";
+import {
+    decodeSentence as decodeHDT,
+    encodePacket as encodeHDT,
+    HDTPacket,
+} from "./codecs/HDT";
+import {
+    decodeSentence as decodeMTK,
+    encodePacket as encodeMTK,
+    MTKPacket,
+} from "./codecs/MTK";
+import {
+    decodeSentence as decodeMWV,
+    encodePacket as encodeMWV,
+    MWVPacket,
+} from "./codecs/MWV";
 import { decodeSentence as decodeRDID, RDIDPacket } from "./codecs/RDID";
 import { decodeSentence as decodeRMC, RMCPacket } from "./codecs/RMC";
 import { decodeSentence as decodeVHW, VHWPacket } from "./codecs/VHW";
-import { decodeSentence as decodeVTG, encodePacket as encodeVTG, VTGPacket } from "./codecs/VTG";
+import {
+    decodeSentence as decodeVTG,
+    encodePacket as encodeVTG,
+    VTGPacket,
+} from "./codecs/VTG";
 import { decodeSentence as decodeZDA, ZDAPacket } from "./codecs/ZDA";
-
+import { decodeSentence as decodeROT, ROTPacket } from "./codecs/ROT";
+import { decodeSentence as decodeVBW, VBWPacket } from "./codecs/VBW";
+import { decodeSentence as decodePGN, PGNPacket } from "./codecs/PGN";
+import { decodeSentence as decodeFEC, FECPacket } from "./codecs/FEC";
 import { validNmeaChecksum } from "./helpers";
 
-
-export type Packet = APBPacket | BWCPacket | DBTPacket | DTMPacket | GGAPacket | GLLPacket | GNSPacket | GSAPacket | GSTPacket | GSVPacket | HDGPacket | HDMPacket | HDTPacket | MTKPacket | MWVPacket | RDIDPacket | RMCPacket | VHWPacket | VTGPacket | ZDAPacket;
-export { APBPacket, BWCPacket, DBTPacket, DTMPacket, GGAPacket, GLLPacket, GNSPacket, GSAPacket, GSTPacket, GSVPacket, HDGPacket, HDMPacket, HDTPacket, MTKPacket, MWVPacket, RDIDPacket, RMCPacket, VHWPacket, VTGPacket, ZDAPacket };
-
+export type Packet =
+    | APBPacket
+    | BWCPacket
+    | DBTPacket
+    | DTMPacket
+    | GGAPacket
+    | GLLPacket
+    | GNSPacket
+    | GSAPacket
+    | GSTPacket
+    | GSVPacket
+    | HDGPacket
+    | HDMPacket
+    | HDTPacket
+    | MTKPacket
+    | MWVPacket
+    | RDIDPacket
+    | RMCPacket
+    | VHWPacket
+    | VTGPacket
+    | ZDAPacket
+    | ROTPacket
+    | VBWPacket
+    | PGNPacket
+    | FECPacket;
+export {
+    APBPacket,
+    BWCPacket,
+    DBTPacket,
+    DTMPacket,
+    GGAPacket,
+    GLLPacket,
+    GNSPacket,
+    GSAPacket,
+    GSTPacket,
+    GSVPacket,
+    HDGPacket,
+    HDMPacket,
+    HDTPacket,
+    MTKPacket,
+    MWVPacket,
+    RDIDPacket,
+    RMCPacket,
+    VHWPacket,
+    VTGPacket,
+    ZDAPacket,
+    ROTPacket,
+    VBWPacket,
+    PGNPacket,
+    FECPacket,
+};
 
 type Decoder = (parts: string[]) => Packet;
 
 export class ParserError extends Error {
     sentenceId: string;
     constructor(sentenceId: string, ...params: any) {
-     super(...params);
-  
-     
-      this.sentenceId = sentenceId;    
+        super(...params);
+
+        this.sentenceId = sentenceId;
     }
-  }
-  
-
-
-
-
-
+}
 
 const decoders: { [sentenceId: string]: Decoder } = {
     APB: decodeAPB,
@@ -64,12 +143,13 @@ const decoders: { [sentenceId: string]: Decoder } = {
     RMC: decodeRMC,
     VHW: decodeVHW,
     VTG: decodeVTG,
-    ZDA: decodeZDA
+    ZDA: decodeZDA,
+    ROT: decodeROT,
+    VBW: decodeVBW,
+    FEC: decodeFEC,
 };
 
-
 type Encoder = (packet: Packet, talker: string) => string;
-
 
 const encoders: { [sentenceId: string]: Encoder } = {
     DBT: encodeDBT as Encoder,
@@ -80,9 +160,8 @@ const encoders: { [sentenceId: string]: Encoder } = {
     HDT: encodeHDT as Encoder,
     MTK: encodeMTK as Encoder,
     MWV: encodeMWV as Encoder,
-    VTG: encodeVTG as Encoder
+    VTG: encodeVTG as Encoder,
 };
-
 
 export function parseNmeaSentence(sentence: string): Packet {
     if (!validNmeaChecksum(sentence)) {
@@ -108,14 +187,26 @@ export function parseNmeaSentence(sentence: string): Packet {
     }
 
     if (!parser) {
-        throw new ParserError(sentenceId, `No known parser for sentence ID "${sentenceId}".`);
+        throw new ParserError(
+            sentenceId,
+            `No known parser for sentence ID "${sentenceId}".`
+        );
     }
-
-    const packet = parser(fields);
-    packet.talkerId = talkerId;
-    return packet;
+    if (sentenceId === "PGN") {
+        const packet = decodePGN(sentence);
+        packet.talkerId = talkerId;
+        return packet;
+    } else {
+        const packet = parser(fields);
+        packet.talkerId = talkerId;
+        return packet;
+    }
 }
-export function parseNmeaCode(sentence: string): {sentenceId:string; talkerId:string; sentence:string} {
+export function parseNmeaCode(sentence: string): {
+    sentenceId: string;
+    talkerId: string;
+    sentence: string;
+} {
     if (!validNmeaChecksum(sentence)) {
         throw Error(`Invalid sentence: "${sentence}".`);
     }
@@ -131,10 +222,9 @@ export function parseNmeaCode(sentence: string): {sentenceId:string; talkerId:st
         talkerId = fields[0].substr(1, 2);
         sentenceId = fields[0].substr(3);
     }
-    fields[0] = sentenceId;    
-    return {sentenceId,talkerId, sentence};
+    fields[0] = sentenceId;
+    return { sentenceId, talkerId, sentence };
 }
-
 
 export function encodeNmeaPacket(packet: Packet, talker: string = "P"): string {
     if (packet === undefined) {

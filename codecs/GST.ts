@@ -31,7 +31,7 @@ export interface GSTPacket {
     sentenceId: "GST";
     sentenceName?: string;
     talkerId?: string;
-    time: Date;
+    time: number;
     totalRms: number;
     semiMajorError: number;
     semiMinorError: number;

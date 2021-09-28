@@ -44,7 +44,7 @@ export interface GNSPacket {
     sentenceId: "GNS";
     sentenceName?: string;
     talkerId?: string;
-    time: Date;
+    time: number;
     latitude: number;
     longitude: number;
     modeIndicator: string;

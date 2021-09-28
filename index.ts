@@ -186,17 +186,18 @@ export function parseNmeaSentence(sentence: string): Packet {
         parser = decodeMTK;
     }
 
-    if (!parser) {
-        throw new ParserError(
-            sentenceId,
-            `No known parser for sentence ID "${sentenceId}".`
-        );
-    }
+   
     if (sentenceId === "PGN") {
         const packet = decodePGN(sentence);
         packet.talkerId = talkerId;
         return packet;
     } else {
+        if (!parser) {
+            throw new ParserError(
+                sentenceId,
+                `No known parser for sentence ID "${sentenceId}".`
+            );
+        }
         const packet = parser(fields);
         packet.talkerId = talkerId;
         return packet;

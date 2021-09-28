@@ -1,6 +1,6 @@
 
 
-import { parseFloatSafe } from "../helpers";
+
 const FromPgn = require("@canboat/canboatjs").FromPgn;
 
 const parser = new FromPgn();

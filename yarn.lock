@@ -20,7 +20,7 @@
 
 "@canboat/canboatjs@Synce/canboatjs":
   version "1.21.2"
-  resolved "https://codeload.github.com/Synce/canboatjs/tar.gz/4192246c25f3faec87d58138f11cfe6ca689727b"
+  resolved "https://codeload.github.com/Synce/canboatjs/tar.gz/8f405574cbea1c1228058c7a17d4e5f9151803bc"
   dependencies:
     "@canboat/pgns" "^1.4.0"
     bit-buffer "0.2.3"

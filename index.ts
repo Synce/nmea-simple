@@ -58,6 +58,7 @@ import { decodeSentence as decodeROT, ROTPacket } from "./codecs/ROT";
 import { decodeSentence as decodeVBW, VBWPacket } from "./codecs/VBW";
 import { decodeSentence as decodePGN, PGNPacket } from "./codecs/PGN";
 import { decodeSentence as decodeFEC, FECPacket } from "./codecs/FEC";
+import { decodeSentence as decodeMWD, MWDPacket } from "./codecs/MWD";
 import { validNmeaChecksum } from "./helpers";
 
 export type Packet =
@@ -84,7 +85,8 @@ export type Packet =
     | ROTPacket
     | VBWPacket
     | PGNPacket
-    | FECPacket;
+    | FECPacket
+    | MWDPacket;
 export {
     APBPacket,
     BWCPacket,
@@ -110,6 +112,7 @@ export {
     VBWPacket,
     PGNPacket,
     FECPacket,
+    MWDPacket,
 };
 
 type Decoder = (parts: string[]) => Packet;
@@ -147,6 +150,7 @@ const decoders: { [sentenceId: string]: Decoder } = {
     ROT: decodeROT,
     VBW: decodeVBW,
     FEC: decodeFEC,
+    MWD: decodeMWD,
 };
 
 type Encoder = (packet: Packet, talker: string) => string;
@@ -186,7 +190,6 @@ export function parseNmeaSentence(sentence: string): Packet {
         parser = decodeMTK;
     }
 
-   
     if (sentenceId === "PGN") {
         const packet = decodePGN(sentence);
         packet.talkerId = talkerId;
